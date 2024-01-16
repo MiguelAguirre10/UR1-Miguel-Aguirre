@@ -5,7 +5,7 @@ namespace UR1_Miguel_Aguirre
         public Form1()
         {
             //test
-
+            //test
             InitializeComponent();
         }
     }
