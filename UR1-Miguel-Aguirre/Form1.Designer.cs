@@ -28,12 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            StartStopBtn = new Button();
+            VideoPictureBox = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)VideoPictureBox).BeginInit();
+            SuspendLayout();
+            // 
+            // StartStopBtn
+            // 
+            StartStopBtn.Location = new Point(341, 392);
+            StartStopBtn.Name = "StartStopBtn";
+            StartStopBtn.Size = new Size(150, 46);
+            StartStopBtn.TabIndex = 0;
+            StartStopBtn.Text = "Start";
+            StartStopBtn.UseVisualStyleBackColor = true;
+            StartStopBtn.Click += StartStopBtn_Click;
+            // 
+            // VideoPictureBox
+            // 
+            VideoPictureBox.Location = new Point(141, 21);
+            VideoPictureBox.Name = "VideoPictureBox";
+            VideoPictureBox.Size = new Size(537, 356);
+            VideoPictureBox.TabIndex = 1;
+            VideoPictureBox.TabStop = false;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(VideoPictureBox);
+            Controls.Add(StartStopBtn);
+            Name = "Form1";
+            Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)VideoPictureBox).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button StartStopBtn;
+        private PictureBox VideoPictureBox;
     }
 }
