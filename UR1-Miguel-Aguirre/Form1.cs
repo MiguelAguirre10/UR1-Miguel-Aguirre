@@ -22,7 +22,7 @@ namespace UR1_Miguel_Aguirre
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load_1(object sender, EventArgs e)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace UR1_Miguel_Aguirre
             while (!token.IsCancellationRequested) // white no requested cancellation
             {
                 Mat frame = mCapture.QueryFrame(); // grab a new frame
-                
+
                 // resize to PictureBox aspect ratio
                 int newHeight = (frame.Size.Height * VideoPictureBox.Size.Width) / frame.Size.Width;
                 Size newSize = new Size(VideoPictureBox.Size.Width, newHeight);

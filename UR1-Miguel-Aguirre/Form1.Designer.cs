@@ -60,6 +60,7 @@
             Controls.Add(StartStopBtn);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load_1;
             ((System.ComponentModel.ISupportInitialize)VideoPictureBox).EndInit();
             ResumeLayout(false);
         }
