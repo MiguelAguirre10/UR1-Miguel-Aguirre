@@ -12,12 +12,15 @@ namespace UR1_Miguel_Aguirre
 
         bool mIsCapturing = false; // capturing state indicator
 
+        private int minTrackBarValue = 0;
+        private int maxTrackBarValue = 255;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load_1(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
@@ -62,12 +65,12 @@ namespace UR1_Miguel_Aguirre
                 CvInvoke.Resize(frame, frame, newSize);
 
                 VideoPictureBox.Image = frame.ToBitmap(); // display current frame
-               
+
                 CvInvoke.CvtColor(frame, frame, ColorConversion.Bgr2Gray); // Changing the image to gray
-                CvInvoke.Threshold(frame, frame, 150, 255, ThresholdType.Binary); // Apply binary thresholding
+                CvInvoke.Threshold(frame, frame, minTrackBarValue, maxTrackBarValue, ThresholdType.Binary); // Apply binary thresholding
 
                 VideoPictureBox2.Image = frame.ToBitmap(); // display current frame
-               
+
                 Task.Delay(16); // ~60fps -> 1000ms/60 = 16.6
             }
         }
@@ -80,7 +83,27 @@ namespace UR1_Miguel_Aguirre
                 mCancellationToken.Cancel();
             }
             mCapture.Dispose();
-            mCancellationToken.Dispose(); 
+            mCancellationToken.Dispose();
+        }
+
+        private void TrackBarMin_Scroll(object sender, EventArgs e)
+        {
+            if (TrackBarMin.Value > TrackBarMax.Value)
+            {
+                TrackBarMax.Value = TrackBarMin.Value;
+            }
+
+            minTrackBarValue = TrackBarMin.Value;
+        }        
+        
+        private void TrackBarMax_Scroll(object sender, EventArgs e)
+        {
+            if (TrackBarMin.Value > TrackBarMax.Value)
+            {
+                TrackBarMin.Value = TrackBarMax.Value;
+            }
+
+            maxTrackBarValue = TrackBarMax.Value;
         }
     }
 }

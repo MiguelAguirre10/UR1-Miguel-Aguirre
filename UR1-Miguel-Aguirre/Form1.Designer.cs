@@ -31,19 +31,19 @@
             StartStopBtn = new Button();
             VideoPictureBox = new PictureBox();
             VideoPictureBox2 = new PictureBox();
-            trackBar1 = new TrackBar();
-            trackBar2 = new TrackBar();
+            TrackBarMax = new TrackBar();
+            TrackBarMin = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)VideoPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)VideoPictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TrackBarMax).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TrackBarMin).BeginInit();
             SuspendLayout();
             // 
             // StartStopBtn
             // 
-            StartStopBtn.Location = new Point(653, 454);
+            StartStopBtn.Location = new Point(628, 439);
             StartStopBtn.Name = "StartStopBtn";
-            StartStopBtn.Size = new Size(150, 46);
+            StartStopBtn.Size = new Size(197, 71);
             StartStopBtn.TabIndex = 0;
             StartStopBtn.Text = "Start";
             StartStopBtn.UseVisualStyleBackColor = true;
@@ -51,51 +51,56 @@
             // 
             // VideoPictureBox
             // 
-            VideoPictureBox.Location = new Point(141, 21);
+            VideoPictureBox.Location = new Point(118, 21);
             VideoPictureBox.Name = "VideoPictureBox";
-            VideoPictureBox.Size = new Size(537, 356);
+            VideoPictureBox.Size = new Size(582, 392);
             VideoPictureBox.TabIndex = 1;
             VideoPictureBox.TabStop = false;
             // 
             // VideoPictureBox2
             // 
-            VideoPictureBox2.Location = new Point(791, 21);
+            VideoPictureBox2.Location = new Point(748, 21);
             VideoPictureBox2.Name = "VideoPictureBox2";
-            VideoPictureBox2.Size = new Size(609, 356);
+            VideoPictureBox2.Size = new Size(640, 392);
             VideoPictureBox2.TabIndex = 2;
             VideoPictureBox2.TabStop = false;
             // 
-            // trackBar1
+            // TrackBarMax
             // 
-            trackBar1.Location = new Point(505, 549);
-            trackBar1.Name = "trackBar1";
-            trackBar1.Size = new Size(440, 90);
-            trackBar1.TabIndex = 3;
+            TrackBarMax.Location = new Point(435, 561);
+            TrackBarMax.Maximum = 255;
+            TrackBarMax.Name = "TrackBarMax";
+            TrackBarMax.Size = new Size(567, 90);
+            TrackBarMax.TabIndex = 3;
+            TrackBarMax.Value = 255;
+            TrackBarMax.Scroll += TrackBarMax_Scroll;
             // 
-            // trackBar2
+            // TrackBarMin
             // 
-            trackBar2.Location = new Point(505, 629);
-            trackBar2.Name = "trackBar2";
-            trackBar2.Size = new Size(440, 90);
-            trackBar2.TabIndex = 4;
+            TrackBarMin.Location = new Point(435, 657);
+            TrackBarMin.Maximum = 255;
+            TrackBarMin.Name = "TrackBarMin";
+            TrackBarMin.Size = new Size(567, 90);
+            TrackBarMin.TabIndex = 4;
+            TrackBarMin.Scroll += TrackBarMin_Scroll;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1514, 765);
-            Controls.Add(trackBar2);
-            Controls.Add(trackBar1);
+            Controls.Add(TrackBarMin);
+            Controls.Add(TrackBarMax);
             Controls.Add(VideoPictureBox2);
             Controls.Add(VideoPictureBox);
             Controls.Add(StartStopBtn);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load_1;
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)VideoPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)VideoPictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TrackBarMax).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TrackBarMin).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -105,7 +110,7 @@
         private Button StartStopBtn;
         private PictureBox VideoPictureBox;
         private PictureBox VideoPictureBox2;
-        private TrackBar trackBar1;
-        private TrackBar trackBar2;
+        private TrackBar TrackBarMax;
+        private TrackBar TrackBarMin;
     }
 }
