@@ -30,12 +30,14 @@
         {
             StartStopBtn = new Button();
             VideoPictureBox = new PictureBox();
+            emguPictureBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)VideoPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)emguPictureBox).BeginInit();
             SuspendLayout();
             // 
             // StartStopBtn
             // 
-            StartStopBtn.Location = new Point(341, 392);
+            StartStopBtn.Location = new Point(653, 454);
             StartStopBtn.Name = "StartStopBtn";
             StartStopBtn.Size = new Size(150, 46);
             StartStopBtn.TabIndex = 0;
@@ -51,17 +53,27 @@
             VideoPictureBox.TabIndex = 1;
             VideoPictureBox.TabStop = false;
             // 
+            // emguPictureBox
+            // 
+            emguPictureBox.Location = new Point(791, 21);
+            emguPictureBox.Name = "emguPictureBox";
+            emguPictureBox.Size = new Size(609, 356);
+            emguPictureBox.TabIndex = 2;
+            emguPictureBox.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1514, 765);
+            Controls.Add(emguPictureBox);
             Controls.Add(VideoPictureBox);
             Controls.Add(StartStopBtn);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load_1;
             ((System.ComponentModel.ISupportInitialize)VideoPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)emguPictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -69,5 +81,6 @@
 
         private Button StartStopBtn;
         private PictureBox VideoPictureBox;
+        private PictureBox emguPictureBox;
     }
 }
