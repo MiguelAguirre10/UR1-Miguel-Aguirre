@@ -42,6 +42,8 @@ namespace UR1_Miguel_Aguirre
                 mCancellationToken.Cancel(); // request a stop
                 mIsCapturing = false; // indicate new state
                 StartStopBtn.Text = "Start"; // inform accordingly
+                TrackBarMax.Visible = false; // make the max track bar invisible
+                TrackBarMin.Visible = false; // make the min track bar invisible
             }
             else
             {
@@ -50,6 +52,13 @@ namespace UR1_Miguel_Aguirre
                 mCaptureThread.Start(); // start it
                 mIsCapturing = true; // indicate new state
                 StartStopBtn.Text = "Stop"; // inform accordingly
+                TrackBarMax.Visible = true; // make the max track bar visible
+                TrackBarMin.Visible = true; // make the min track bar visible
+                textBox1.Visible = true; // make textBox1 visible
+                textBox2.Visible = true; // make textBox2 visible
+                textBox3.Visible = true; // make textBox3 visible
+                textBox4.Visible = true; // make textBox4 visible
+                textBox5.Visible = true; // make textBox5 visible
             }
         }
 
@@ -63,13 +72,39 @@ namespace UR1_Miguel_Aguirre
                 int newHeight = (frame.Size.Height * VideoPictureBox.Size.Width) / frame.Size.Width;
                 Size newSize = new Size(VideoPictureBox.Size.Width, newHeight);
                 CvInvoke.Resize(frame, frame, newSize);
+                CvInvoke.Flip(frame, frame, FlipType.Horizontal); // flip display frame horizontally
 
                 VideoPictureBox.Image = frame.ToBitmap(); // display current frame
 
-                CvInvoke.CvtColor(frame, frame, ColorConversion.Bgr2Gray); // Changing the image to gray
-                CvInvoke.Threshold(frame, frame, minTrackBarValue, maxTrackBarValue, ThresholdType.Binary); // Apply binary thresholding
-
+                CvInvoke.CvtColor(frame, frame, ColorConversion.Bgr2Gray); // changing the image to gray
+                CvInvoke.Threshold(frame, frame, minTrackBarValue, maxTrackBarValue, ThresholdType.Binary); // apply binary thresholding
+                
                 VideoPictureBox2.Image = frame.ToBitmap(); // display current frame
+
+                int columnWidth = frame.Width / 5; // divide the frame width into 5 sections to create 5 columns
+                Mat[] columns = new Mat[5]; // create an array to store the individual columns of the image
+                for (int i = 0; i < 5; i++) // iterate through each column
+                {
+                    int startX = i * columnWidth; // calculate the starting x-coordinate of the current column
+                    int endX = (i == 4) ? frame.Width : (i + 1) * columnWidth; // calculate the ending x-coordinate of the current column
+                    Rectangle roi = new Rectangle(startX, 0, endX - startX, frame.Height); // define a region of interest (ROI) representing the current column
+                    columns[i] = new Mat(frame, roi); // extract the current column from the frame using the defined ROI
+                }
+
+                int[] whitePixelsCounts = new int[5]; // int array to apply the corresponding pixel count to the corresponding column section
+                for (int i = 0; i < 5; i++) // for loop for int array
+                {
+                    whitePixelsCounts[i] = CvInvoke.CountNonZero(columns[i]); // count the number of white pixels
+                }
+
+                Invoke(new Action(() => // apply the right int array so that the pixel count for each section is on the right text box
+                {
+                    textBox1.Text = $"{whitePixelsCounts[0]}";
+                    textBox2.Text = $"{whitePixelsCounts[1]}";
+                    textBox3.Text = $"{whitePixelsCounts[2]}";
+                    textBox4.Text = $"{whitePixelsCounts[3]}";
+                    textBox5.Text = $"{whitePixelsCounts[4]}";
+                }));
 
                 Task.Delay(16); // ~60fps -> 1000ms/60 = 16.6
             }
@@ -94,8 +129,8 @@ namespace UR1_Miguel_Aguirre
             }
 
             minTrackBarValue = TrackBarMin.Value;
-        }        
-        
+        }
+
         private void TrackBarMax_Scroll(object sender, EventArgs e)
         {
             if (TrackBarMin.Value > TrackBarMax.Value)
