@@ -95,28 +95,30 @@ namespace UR1_Miguel_Aguirre
                 VideoPictureBox.Image = frame.ToBitmap(); // display current raw frame
 
                 Mat hsvFrame = new Mat();
-                CvInvoke.CvtColor(frame, hsvFrame, Emgu.CV.CvEnum.ColorConversion.Bgr2Hsv);
+                CvInvoke.CvtColor(frame, hsvFrame, Emgu.CV.CvEnum.ColorConversion.Bgr2Hsv); // convert the image to an HSV image
 
-                Mat[] hsvChannels = hsvFrame.Split();
+                Mat[] hsvChannels = hsvFrame.Split(); // split the HSV image into an array of Mat objects, one per channel:
 
                 Mat hueFilter = new Mat();
-                CvInvoke.InRange(hsvChannels[0], new ScalarArray(minTrackBarValueH), new ScalarArray(maxTrackBarValueH), hueFilter);
+                CvInvoke.InRange(hsvChannels[0], new ScalarArray(minTrackBarValueH), new ScalarArray(maxTrackBarValueH), hueFilter); // filter out all but "the color you want"?
                 
                 VideoPictureBox3.Image = hueFilter.ToBitmap(); // display current hue frame
 
                 Mat saturationFilter = new Mat();
-                CvInvoke.InRange(hsvChannels[1], new ScalarArray(minTrackBarValueS), new ScalarArray(maxTrackBarValueS), saturationFilter);
+                CvInvoke.InRange(hsvChannels[1], new ScalarArray(minTrackBarValueS), new ScalarArray(maxTrackBarValueS), saturationFilter); // use the saturation channel to filter out all but certain saturations
                 
                 VideoPictureBox4.Image = saturationFilter.ToBitmap(); // display current saturation frame
 
                 Mat valueFilter = new Mat();
-                CvInvoke.InRange(hsvChannels[2], new ScalarArray(minTrackBarValueV), new ScalarArray(maxTrackBarValueV), valueFilter);
+                CvInvoke.InRange(hsvChannels[2], new ScalarArray(minTrackBarValueV), new ScalarArray(maxTrackBarValueV), valueFilter); // use the calue channel to filter out all but brighter colors
                 
                 VideoPictureBox5.Image = valueFilter.ToBitmap(); // display current value frame
-
+                
+                // now combine the filters together:
                 Mat mergedImage = new Mat();
                 CvInvoke.BitwiseAnd(hueFilter, saturationFilter, mergedImage);
                 CvInvoke.BitwiseAnd(mergedImage, valueFilter, mergedImage);
+                
                 VideoPictureBox6.Image = mergedImage.ToBitmap(); // display current merged frame
 
                 CvInvoke.CvtColor(frame, frame, ColorConversion.Bgr2Gray); // changing the image to gray
