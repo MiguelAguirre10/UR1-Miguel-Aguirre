@@ -432,7 +432,7 @@
             TrackBarMinHY.Name = "TrackBarMinHY";
             TrackBarMinHY.Size = new Size(560, 90);
             TrackBarMinHY.TabIndex = 35;
-            TrackBarMinHY.Value = 15;
+            TrackBarMinHY.Value = 20;
             TrackBarMinHY.Visible = false;
             TrackBarMinHY.Scroll += TrackBarMinHY_Scroll;
             // 
@@ -465,7 +465,7 @@
             TrackBarMaxSY.Name = "TrackBarMaxSY";
             TrackBarMaxSY.Size = new Size(560, 90);
             TrackBarMaxSY.TabIndex = 36;
-            TrackBarMaxSY.Value = 150;
+            TrackBarMaxSY.Value = 155;
             TrackBarMaxSY.Visible = false;
             TrackBarMaxSY.Scroll += TrackBarMaxSY_Scroll;
             // 

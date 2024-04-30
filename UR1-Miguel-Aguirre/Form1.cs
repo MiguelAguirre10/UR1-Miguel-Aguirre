@@ -14,8 +14,8 @@ namespace UR1_Miguel_Aguirre
 
         bool mIsCapturing = false; // capturing state indicator
 
-        private int minTrackBarValue = 190, minTrackBarValueHR = 0, minTrackBarValueSR = 120, minTrackBarValueVR = 90, minTrackBarValueHY = 15, minTrackBarValueSY = 45, minTrackBarValueVY = 140;
-        private int maxTrackBarValue = 255, maxTrackBarValueHR = 180, maxTrackBarValueSR = 185, maxTrackBarValueVR = 155, maxTrackBarValueHY = 35, maxTrackBarValueSY = 150, maxTrackBarValueVY = 220;
+        private int minTrackBarValue = 190, minTrackBarValueHR = 0, minTrackBarValueSR = 120, minTrackBarValueVR = 90, minTrackBarValueHY = 20, minTrackBarValueSY = 45, minTrackBarValueVY = 140;
+        private int maxTrackBarValue = 255, maxTrackBarValueHR = 180, maxTrackBarValueSR = 185, maxTrackBarValueVR = 155, maxTrackBarValueHY = 35, maxTrackBarValueSY = 155, maxTrackBarValueVY = 220;
 
         public Form1()
         {
